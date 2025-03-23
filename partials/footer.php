@@ -98,5 +98,9 @@
             </div>
         </div>
     </div>
+    <?php
+    // Zavolaj funkciu na pridanie skriptov
+    add_scripts();
+    ?>
 </footer>
 <!-- End Footer -->
