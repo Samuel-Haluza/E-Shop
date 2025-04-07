@@ -1,5 +1,3 @@
-
-
 <!-- Start Footer -->
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
@@ -27,16 +25,24 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
+                    // Nahradenie funkcie get_menu_items() triedou Menu
                     $products = [
-                        "Luxury" => "#",
-                        "Sport Wear" => "#",
-                        "Men's Shoes" => "#",
-                        "Women's Shoes" => "#",
-                        "Popular Dress" => "#",
-                        "Gym Accessories" => "#",
-                        "Sport Shoes" => "#"
+                        ['label' => 'Luxury', 'link' => '#'],
+                        ['label' => 'Sport Wear', 'link' => '#'],
+                        ['label' => "Men's Shoes", 'link' => '#'],
+                        ['label' => "Women's Shoes", 'link' => '#'],
+                        ['label' => 'Popular Dress', 'link' => '#'],
+                        ['label' => 'Gym Accessories', 'link' => '#'],
+                        ['label' => 'Sport Shoes', 'link' => '#']
                     ];
-                    echo get_menu_items($products);
+
+                    // Vytvorenie objektu triedy Menu pre produkty
+                    $menu = new Menu($products);
+                    
+                    // Výpis produktov cez triedu Menu
+                    foreach ($menu->index() as $item) {
+                        echo '<li><a class="text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+                    }
                     ?>
                 </ul>
             </div>
@@ -45,14 +51,22 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
+                    // Nahradenie funkcie get_menu_items() triedou Menu
                     $infoPages = [
-                        "Home" => "index.php",
-                        "About Us" => "about.php",
-                        "Shop Locations" => "#",
-                        "FAQs" => "#",
-                        "Contact" => "contact.php"
+                        ['label' => 'Home', 'link' => 'index.php'],
+                        ['label' => 'About Us', 'link' => 'about.php'],
+                        ['label' => 'Shop Locations', 'link' => '#'],
+                        ['label' => 'FAQs', 'link' => '#'],
+                        ['label' => 'Contact', 'link' => 'contact.php']
                     ];
-                    echo get_menu_items($infoPages);
+
+                    // Vytvorenie objektu triedy Menu pre Further Info
+                    $menu = new Menu($infoPages);
+                    
+                    // Výpis info stránok cez triedu Menu
+                    foreach ($menu->index() as $item) {
+                        echo '<li><a class="text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+                    }
                     ?>
                 </ul>
             </div>
@@ -66,13 +80,22 @@
             <div class="col-auto me-auto">
                 <ul class="list-inline text-left footer-icons">
                     <?php
+                    // Sociálne odkazy
                     $socialLinks = [
-                        "facebook-f" => "http://fb.com/templatemo",
-                        "instagram" => "https://www.instagram.com/",
-                        "twitter" => "https://twitter.com/",
-                        "linkedin" => "https://www.linkedin.com/"
+                        'facebook-f' => 'http://fb.com/templatemo',
+                        'instagram' => 'https://www.instagram.com/',
+                        'twitter' => 'https://twitter.com/',
+                        'linkedin' => 'https://www.linkedin.com/'
                     ];
-                    echo get_social_icons($socialLinks);
+
+                    // Výpis ikon
+                    foreach ($socialLinks as $icon => $link) {
+                        echo '<li class="list-inline-item">
+                                <a class="text-light" href="' . $link . '" target="_blank">
+                                    <i class="fab fa-' . $icon . ' fa-fw"></i>
+                                </a>
+                              </li>';
+                    }
                     ?>
                 </ul>
             </div>

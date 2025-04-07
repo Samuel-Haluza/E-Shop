@@ -1,5 +1,6 @@
 <?php
 require("funk/function.php");
+require("funk/Menu.php"); 
 ?>
 
 <!DOCTYPE html>
@@ -32,13 +33,11 @@ require("funk/function.php");
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <?php
-                        $pages = array(
-                            "Home" => "index.php",
-                            "About" => "about.php",
-                            "Shop" => "shop.php",
-                            "Contact" => "contact.php"
-                        );
-                        echo get_meno($pages);
+                        $menu = new Menu();
+                        $menuItems = $menu->index();
+                        foreach ($menuItems as $item) {
+                            echo '<li class="nav-item"><a class="nav-link" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+                        }
                         ?>
                     </ul>
                 </div>
