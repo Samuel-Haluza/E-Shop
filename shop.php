@@ -35,8 +35,8 @@ include("partials/header.php")
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=men">Men</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=women">Women</a></li>
                         </ul>
                     </li>
                     <li class="pb-3">
@@ -45,8 +45,8 @@ include("partials/header.php")
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Sport</a></li>
-                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=sport">Sport</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=luxury">Luxury</a></li>
                         </ul>
                     </li>
                     <li class="pb-3">
@@ -55,9 +55,9 @@ include("partials/header.php")
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Bag</a></li>
-                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=bag">Bag</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=sweater">Sweater</a></li>
+                            <li><a class="text-decoration-none" href="shop.php?category=sunglass">Sunglass</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -95,14 +95,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_01.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -132,14 +132,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_02.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -169,14 +169,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_03.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -206,14 +206,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_04.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -243,14 +243,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_05.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -280,14 +280,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_06.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -317,14 +317,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_07.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -354,14 +354,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_08.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -391,14 +391,14 @@ include("partials/header.php")
                                 <img class="card-img rounded-0 img-fluid" src="assets/img/shop_09.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
+                                <a href="shop-single.php" class="h3 text-decoration-none">Oupidatat non</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">

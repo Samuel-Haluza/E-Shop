@@ -25,7 +25,7 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
-                    // Nahradenie funkcie get_menu_items() triedou Menu
+                    
                     $products = [
                         ['label' => 'Luxury', 'link' => '#'],
                         ['label' => 'Sport Wear', 'link' => '#'],

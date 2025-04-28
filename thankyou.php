@@ -1,44 +1,56 @@
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name'] ?? '');
-} else {
-    header("Location: index.php"); // presmerovanie, ak nie je POST To znamená, 
-                                    // že ak niekto skúsi otvoriť stránku thankyou.php priamo do 
-                                    // prehliadača bez odoslania formulára, nebude mu to dovolené a vráti sa späť na hlavnú stránku.
-    exit();
-}
-?>
 
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ďakujeme</title>
+    <title>Thank You</title>
     <style>
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            background-color: #f8f9fa;
         }
-        .button {
+        .thankyou-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #28a745;
+        }
+        p {
+            margin: 10px 0 20px;
+            color: #333;
+        }
+        a {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 20px;
-            font-size: 16px;
-            background-color:rgb(5, 139, 36);
-            color: white;
+            background-color: #28a745;
+            color: #fff;
             text-decoration: none;
             border-radius: 5px;
+            font-size: 16px;
         }
-        .button:hover {
-            background-color:rgb(0, 179, 3);
+        a:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
-    <h1>Ďakujem za vyplnenie, <?php echo $name; ?>!</h1>
-    <a href="index.php" class="button">Späť na hlavnú stránku</a>
+    <div class="thankyou-container">
+        <h1>Ďakujeme za váš odkaz!</h1>
+        <p>Vaša správa bola úspešne odoslaná.</p>
+        <a href="index.php">Späť na hlavnú stránku</a>
+    </div>
 </body>
 </html>
+
+
