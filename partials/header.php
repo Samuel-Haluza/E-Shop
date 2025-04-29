@@ -1,6 +1,6 @@
 <?php
-require("funk/function.php");
-require("funk/Menu.php"); 
+require(__DIR__ . '/../funk/function.php'); // Absolútna cesta k function.php
+require(__DIR__ . '/../funk/Menu.php'); // Absolútna cesta k Menu.php
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +39,10 @@ require("funk/Menu.php");
                             echo '<li class="nav-item"><a class="nav-link" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
                         }
                         ?>
+                        <!-- Pridaný odkaz na Login -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
                     </ul>
                 </div>
             </div>

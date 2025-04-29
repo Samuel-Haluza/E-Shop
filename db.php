@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "eshop_db";  // Názov tvojej databázy
+    private $db_name = "eshop_db";  
     private $username = "root";     // Užívateľ
     private $password = "";         // Heslo
     public $conn;
