@@ -9,7 +9,8 @@ class Menu {
                 ['label' => 'Home', 'link' => 'index.php'],
                 ['label' => 'About', 'link' => 'about.php'],
                 ['label' => 'Shop', 'link' => 'shop.php'],
-                ['label' => 'Contact', 'link' => 'contact.php']
+                ['label' => 'Contact', 'link' => 'contact.php'],
+                ['label' => 'Login', 'link' => 'login.php']
             ];
         }
         $this->menuItems = $menuItems;

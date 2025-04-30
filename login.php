@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_name'] = $user['name'];
 
         // Presmerovanie podľa role
-        if ($user['role'] == 0) { // Admin
+        if ($user['role'] == 0) { 
             header('Location: admin.php');
-        } else { // Používateľ
+        } else { 
             header('Location: index.php');
         }
         exit;
@@ -66,7 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?php
+    add_styles();
+    ?>
 </body>
 </html>
 <?php

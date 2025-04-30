@@ -51,7 +51,7 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
-                    // Nahradenie funkcie get_menu_items() triedou Menu
+                    
                     $infoPages = [
                         ['label' => 'Home', 'link' => 'index.php'],
                         ['label' => 'About Us', 'link' => 'about.php'],
@@ -60,10 +60,9 @@
                         ['label' => 'Contact', 'link' => 'contact.php']
                     ];
 
-                    // Vytvorenie objektu triedy Menu pre Further Info
+                   
                     $menu = new Menu($infoPages);
                     
-                    // Výpis info stránok cez triedu Menu
                     foreach ($menu->index() as $item) {
                         echo '<li><a class="text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
                     }
@@ -80,7 +79,7 @@
             <div class="col-auto me-auto">
                 <ul class="list-inline text-left footer-icons">
                     <?php
-                    // Sociálne odkazy
+                  
                     $socialLinks = [
                         'facebook-f' => 'http://fb.com/templatemo',
                         'instagram' => 'https://www.instagram.com/',
@@ -88,7 +87,7 @@
                         'linkedin' => 'https://www.linkedin.com/'
                     ];
 
-                    // Výpis ikon
+
                     foreach ($socialLinks as $icon => $link) {
                         echo '<li class="list-inline-item">
                                 <a class="text-light" href="' . $link . '" target="_blank">
