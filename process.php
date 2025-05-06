@@ -2,6 +2,7 @@
 include('db.php');
 include('funk/User.php');
 include('funk/Contact.php');
+include('funk/Product.php');
 
 $database = new Database();
 $db = $database->getConnection();
@@ -54,6 +55,16 @@ if ($action === 'edit_user') {
         header('Location: admin.php?message=Kontakt bol úspešne vymazaný');
     } else {
         header('Location: admin.php?error=Nepodarilo sa vymazať kontakt');
+    }
+    exit;
+
+    
+} elseif ($action === 'delete_product') {
+    $productManager = new Product($db);
+    if ($productManager->deleteProduct($id)) {
+        header('Location: admin.php?message=Produkt bol úspešne vymazaný');
+    } else {
+        header('Location: admin.php?error=Nepodarilo sa vymazať produkt');
     }
     exit;
 } else {

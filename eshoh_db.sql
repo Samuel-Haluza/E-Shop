@@ -20,31 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Databáza: `db_blog`
 --
-
--- --------------------------------------------------------
-
---
--- Štruktúra tabuľky pre tabuľku `categories`
---
-
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
-
---
--- Sťahujem dáta pre tabuľku `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
-(1, 'ecommerce', '2025-04-07 13:54:36'),
-(2, 'prezentačné stránky', '2025-04-07 13:54:36'),
-(3, 'blogy', '2025-04-07 13:54:36'),
-(4, 'webové aplikácie', '2025-04-07 13:54:36');
-
--- --------------------------------------------------------
-
 --
 -- Štruktúra tabuľky pre tabuľku `contact`
 --
@@ -53,7 +28,8 @@ CREATE TABLE `contact` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `message` text NOT NULL
+  `message` text NOT NULL,
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -65,30 +41,6 @@ INSERT INTO `contact` (`id`, `name`, `email`, `message`) VALUES
 (2, 'a', 'kelebercova24@gmail.com', '<script>\r\nalert(\'hello\');\r\n</script>');
 
 -- --------------------------------------------------------
-
---
--- Štruktúra tabuľky pre tabuľku `portfolio`
---
-
-CREATE TABLE `portfolio` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
-
--- --------------------------------------------------------
-
---
--- Štruktúra tabuľky pre tabuľku `portfolio_categories`
---
-
-CREATE TABLE `portfolio_categories` (
-  `post_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
 
 -- --------------------------------------------------------
 
@@ -116,6 +68,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VA
 --
 -- Kľúče pre exportované tabuľky
 --
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    image VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 --
 -- Indexy pre tabuľku `categories`

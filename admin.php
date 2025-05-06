@@ -8,23 +8,30 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 0) {
 include('db.php');
 include('funk/User.php');
 include('funk/Contact.php');
-include("partials/header.php");
+include('funk/Product.php');
 
 // Vytvorenie pripojenia k databáze
 $database = new Database();
 $db = $database->getConnection();
 
-// Použitie triedy User
-$userManager = new User($db);
-$users = $userManager->getAllUsers();
+if (!$db) {
+    die("Nepodarilo sa pripojiť k databáze.");
+}
 
-// Použitie triedy Contact
+// Použitie tried
+$userManager = new User($db);
 $contactManager = new Contact($db);
-$contacts = $contactManager->getAllContacts();
+$productManager = new Product($db);
+
+// Načítanie údajov
+$contacts = $contactManager->getAllContacts() ?? [];
+$users = $userManager->getAllUsers() ?? [];
+$products = $productManager->getAllProducts() ?? [];
 
 // Načítanie údajov na úpravu
 $editContact = null;
 $editUser = null;
+$editProduct = null;
 
 if (isset($_GET['edit_contact_id'])) {
     $editContact = $contactManager->getContactById($_GET['edit_contact_id']);
@@ -33,7 +40,69 @@ if (isset($_GET['edit_contact_id'])) {
 if (isset($_GET['edit_user_id'])) {
     $editUser = $userManager->getUserById($_GET['edit_user_id']);
 }
+
+if (isset($_GET['edit_product_id'])) {
+    $editProduct = $productManager->getProductById($_GET['edit_product_id']);
+}
+
+// Spracovanie formulárov
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['update_contact'])) {
+        $id = $_POST['contact_id'];
+        $name = $_POST['contact_name'];
+        $email = $_POST['contact_email'];
+        $message = $_POST['contact_message'];
+
+        if ($contactManager->updateContact($id, $name, $email, $message)) {
+            header('Location: admin.php?message=Kontakt bol úspešne upravený');
+            exit;
+        } else {
+            echo "<p class='text-danger text-center'>Nepodarilo sa upraviť kontakt.</p>";
+        }
+    }
+
+    if (isset($_POST['update_user'])) {
+        $id = $_POST['user_id'];
+        $name = $_POST['user_name'];
+        $email = $_POST['user_email'];
+        $role = $_POST['user_role'];
+
+        if ($userManager->updateUser($id, $name, $email, $role)) {
+            header('Location: admin.php?message=Používateľ bol úspešne upravený');
+            exit;
+        } else {
+            echo "<p class='text-danger text-center'>Nepodarilo sa upraviť používateľa.</p>";
+        }
+    }
+
+    if (isset($_POST['create_product'])) {
+        $name = $_POST['product_name'];
+        $description = $_POST['product_description'];
+        $price = $_POST['product_price'];
+        $image = $_POST['product_image'];
+
+        if ($productManager->createProduct($name, $description, $price, $image)) {
+            header('Location: admin.php?message=Produkt bol úspešne pridaný');
+            exit;
+        }
+    }
+
+    if (isset($_POST['update_product'])) {
+        $id = $_POST['product_id'];
+        $name = $_POST['product_name'];
+        $description = $_POST['product_description'];
+        $price = $_POST['product_price'];
+        $image = $_POST['product_image'];
+
+        if ($productManager->updateProduct($id, $name, $description, $price, $image)) {
+            header('Location: admin.php?message=Produkt bol úspešne upravený');
+            exit;
+        }
+    }
+}
 ?>
+
+<?php include("partials/header.php"); ?>
 
 <!-- Nadpis -->
 <section class="admin-header text-center py-4 bg-light">
@@ -96,38 +165,36 @@ if (isset($_GET['edit_user_id'])) {
 </section>
 <?php endif; ?>
 
-<!-- Spracovanie formulárov -->
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['update_contact'])) {
-        $id = $_POST['contact_id'];
-        $name = $_POST['contact_name'];
-        $email = $_POST['contact_email'];
-        $message = $_POST['contact_message'];
-
-        if ($contactManager->updateContact($id, $name, $email, $message)) {
-            header('Location: admin.php?message=Kontakt bol úspešne upravený');
-            exit;
-        } else {
-            echo "<p class='text-danger text-center'>Nepodarilo sa upraviť kontakt.</p>";
-        }
-    }
-
-    if (isset($_POST['update_user'])) {
-        $id = $_POST['user_id'];
-        $name = $_POST['user_name'];
-        $email = $_POST['user_email'];
-        $role = $_POST['user_role'];
-
-        if ($userManager->updateUser($id, $name, $email, $role)) {
-            header('Location: admin.php?message=Používateľ bol úspešne upravený');
-            exit;
-        } else {
-            echo "<p class='text-danger text-center'>Nepodarilo sa upraviť používateľa.</p>";
-        }
-    }
-}
-?>
+<!-- Formulár na pridanie alebo úpravu produktu -->
+<section class="edit-product py-4">
+    <div class="container">
+        <h2 class="text-center mb-4"><?php echo $editProduct ? 'Upraviť produkt' : 'Pridať nový produkt'; ?></h2>
+        <form method="POST">
+            <?php if ($editProduct): ?>
+                <input type="hidden" name="product_id" value="<?php echo $editProduct['id']; ?>">
+            <?php endif; ?>
+            <div class="mb-3">
+                <label for="product_name" class="form-label">Názov:</label>
+                <input type="text" name="product_name" id="product_name" class="form-control" value="<?php echo $editProduct['name'] ?? ''; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="product_description" class="form-label">Popis:</label>
+                <textarea name="product_description" id="product_description" class="form-control" rows="5" required><?php echo $editProduct['description'] ?? ''; ?></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="product_price" class="form-label">Cena (€):</label>
+                <input type="number" step="0.01" name="product_price" id="product_price" class="form-control" value="<?php echo $editProduct['price'] ?? ''; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="product_image" class="form-label">Obrázok (URL):</label>
+                <input type="text" name="product_image" id="product_image" class="form-control" value="<?php echo $editProduct['image'] ?? ''; ?>">
+            </div>
+            <button type="submit" name="<?php echo $editProduct ? 'update_product' : 'create_product'; ?>" class="btn btn-success">
+                <?php echo $editProduct ? 'Uložiť zmeny' : 'Pridať produkt'; ?>
+            </button>
+        </form>
+    </div>
+</section>
 
 <!-- Zobrazenie kontaktov -->
 <section class="admin-contacts py-4">
@@ -170,6 +237,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="admin.php?edit_user_id=<?php echo $user['id']; ?>" class="btn btn-primary btn-sm">Upraviť</a>
                                 <a href="process.php?action=delete_user&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tohto používateľa?')">Vymazať</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Zobrazenie produktov -->
+<section class="admin-products py-4">
+    <div class="container">
+        <h2 class="text-center mb-4">Produkty</h2>
+        <div class="row">
+            <?php foreach ($products as $product): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Názov:</strong> <?php echo htmlspecialchars($product['name']); ?></h5>
+                            <p class="card-text"><strong>Popis:</strong> <?php echo htmlspecialchars($product['description']); ?></p>
+                            <p class="card-text"><strong>Cena:</strong> <?php echo htmlspecialchars($product['price']); ?> €</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="admin.php?edit_product_id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm">Upraviť</a>
+                                <a href="process.php?action=delete_product&id=<?php echo $product['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tento produkt?')">Vymazať</a>
                             </div>
                         </div>
                     </div>
