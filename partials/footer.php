@@ -1,4 +1,5 @@
 <!-- Start Footer -->
+
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
         <div class="row">
@@ -51,20 +52,14 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
-                    
-                    $infoPages = [
-                        ['label' => 'Home', 'link' => 'index.php'],
-                        ['label' => 'About Us', 'link' => 'about.php'],
-                        ['label' => 'Shop Locations', 'link' => '#'],
-                        ['label' => 'FAQs', 'link' => '#'],
-                        ['label' => 'Contact', 'link' => 'contact.php']
-                    ];
+                    // Inicializácia objektu triedy Menu
+                    include_once("funk/Menu.php"); // Zahrňte Menu.php iba raz
+                    $menu = new Menu(); // Vytvorenie objektu triedy Menu
+                    $menuItems = $menu->index(); // Získanie položiek menu
 
-                   
-                    $menu = new Menu($infoPages);
-                    
-                    foreach ($menu->index() as $item) {
-                        echo '<li><a class="text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+                    // Výpis položiek menu
+                    foreach ($menuItems as $item) {
+                        echo '<li class="nav-item"><a class="nav-link text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
                     }
                     ?>
                 </ul>

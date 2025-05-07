@@ -21,11 +21,20 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createUser($name, $email, $password, $role) {
+    public function getUserByEmail($email) {
+        $query = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function createUser($email, $password, $role) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $defaultName = 'User'; // Predvolené meno
         $query = "INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, :role)";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':name', $defaultName);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->bindParam(':role', $role);
