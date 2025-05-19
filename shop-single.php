@@ -35,11 +35,11 @@ if (!$product) {
                         <p class="h3 py-2"><?php echo htmlspecialchars($product['price']); ?> €</p>
                         <h6>Description:</h6>
                         <p><?php echo htmlspecialchars($product['description']); ?></p>
-                        <form action="cart.php" method="GET">
+                        <form action="contact.php">
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                             <div class="row pb-3">
                                 <div class="col d-grid">
-                                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocart">Add To Cart</button>
+                                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocart">Contact dealer</button>
                                 </div>
                             </div>
                         </form>

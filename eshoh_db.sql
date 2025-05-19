@@ -28,7 +28,7 @@ CREATE TABLE `contact` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `message` text NOT NULL,
+  `message` text NOT NULL
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -78,11 +78,7 @@ CREATE TABLE products (
 );
 
 --
--- Indexy pre tabuľku `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+
 
 --
 -- Indexy pre tabuľku `contact`
@@ -91,11 +87,7 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pre tabuľku `portfolio`
---
-ALTER TABLE `portfolio`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+
 
 --
 -- Indexy pre tabuľku `portfolio_categories`
@@ -116,10 +108,7 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT pre tabuľku `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 
 --
 -- AUTO_INCREMENT pre tabuľku `contact`
@@ -128,10 +117,9 @@ ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pre tabuľku `portfolio`
+
 --
-ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 
 --
 -- AUTO_INCREMENT pre tabuľku `users`
@@ -144,19 +132,11 @@ ALTER TABLE `users`
 --
 
 --
--- Obmedzenie pre tabuľku `portfolio`
---
-ALTER TABLE `portfolio`
-  ADD CONSTRAINT `portfolio_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Obmedzenie pre tabuľku `portfolio_categories`
---
-ALTER TABLE `portfolio_categories`
-  ADD CONSTRAINT `portfolio_categories_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `portfolio` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `portfolio_categories_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
-COMMIT;
+-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+ALTER TABLE contact ADD COLUMN subject VARCHAR(255) NOT NULL;
