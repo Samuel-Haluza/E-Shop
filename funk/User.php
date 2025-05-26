@@ -31,7 +31,7 @@ class User {
 
     public function createUser($email, $password, $role) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $defaultName = 'User'; // Predvolené meno
+        $defaultName = 'User'; 
         $query = "INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, :role)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':name', $defaultName);

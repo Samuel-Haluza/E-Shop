@@ -53,11 +53,11 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
                     // Inicializácia objektu triedy Menu
-                    include_once("funk/Menu.php"); // Zahrňte Menu.php iba raz
-                    $menu = new Menu(); // Vytvorenie objektu triedy Menu
-                    $menuItems = $menu->index(); // Získanie položiek menu
+                    include_once("funk/Menu.php"); 
+                    $menu = new Menu(); 
+                    $menuItems = $menu->index(); 
 
-                    // Výpis položiek menu
+                    
                     foreach ($menuItems as $item) {
                         echo '<li class="nav-item"><a class="nav-link text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
                     }
@@ -116,7 +116,7 @@
         </div>
     </div>
     <?php
-    // Zavolaj funkciu na pridanie skriptov
+    
     add_scripts();
     ?>
 </footer>

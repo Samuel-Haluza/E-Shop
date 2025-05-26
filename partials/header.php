@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . '/../funk/function.php'); // Absolútna cesta 
+require(__DIR__ . '/../funk/function.php'); 
 require(__DIR__ . '/../funk/Menu.php');
 ?>
 

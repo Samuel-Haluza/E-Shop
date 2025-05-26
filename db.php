@@ -2,8 +2,8 @@
 class Database {
     private $host = "localhost";
     private $db_name = "eshop_db";  
-    private $username = "root";     // Užívateľ
-    private $password = "";         // Heslo
+    private $username = "root";     
+    private $password = "";         
     public $conn;
 
     public function getConnection() {

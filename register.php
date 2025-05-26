@@ -19,7 +19,7 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $role = 1; // Predvolená rola pre registrovaných používateľov (napr. 1 = Používateľ)
+    $role = 1; 
 
     // Overenie, či sú všetky polia vyplnené
     if (!empty($email) && !empty($password)) {
