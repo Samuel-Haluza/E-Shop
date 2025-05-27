@@ -4,11 +4,13 @@ session_start();
 include('db.php');
 include("partials/header.php");
 include("funk/User.php");
+require_once("funk/function.php"); 
 
 // Vytvorenie pripojenia k databáze
 $database = new Database();
 $db = $database->getConnection();
 $userModel = new User($db);
+$assetsManager = new AssetsManager(); 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <?php $assetsManager->addStyles(); ?>
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -64,9 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-    <?php
-    add_styles();
-    ?>
 </body>
 </html>
 <?php
