@@ -3,21 +3,19 @@
 session_start();
 include('db.php');
 include("partials/header.php");
+include("funk/User.php");
 
 // Vytvorenie pripojenia k databáze
 $database = new Database();
 $db = $database->getConnection();
+$userModel = new User($db);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Načítanie používateľa podľa e-mailu
-    $query = "SELECT * FROM users WHERE email = :email";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $userModel->getUserByEmail($email);
 
     if ($user && password_verify($password, $user['password'])) {
         // Prihlásenie úspešné

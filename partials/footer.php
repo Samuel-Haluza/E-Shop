@@ -1,5 +1,7 @@
 <!-- Start Footer -->
-
+ <?php
+ require_once(__DIR__ . '/../funk/function.php');
+?>
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
         <div class="row">
@@ -116,8 +118,8 @@
         </div>
     </div>
     <?php
-    
-    add_scripts();
+    $assetsManager = new AssetsManager();
+    $assetsManager->addScripts();
     ?>
 </footer>
 <!-- End Footer -->

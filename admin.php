@@ -10,13 +10,14 @@ include('funk/User.php');
 include('funk/Contact.php');
 include('funk/Product.php');
 
-// Vytvorenie pripojenia k databáze
+
 $database = new Database();
 $db = $database->getConnection();
 
 if (!$db) {
     die("Nepodarilo sa pripojiť k databáze.");
 }
+
 
 // Použitie tried
 $userManager = new User($db);
@@ -45,7 +46,7 @@ if (isset($_GET['edit_product_id'])) {
     $editProduct = $productManager->getProductById($_GET['edit_product_id']);
 }
 
-// Spracovanie formulárov
+// Spracovanie formulárov na pridávanie a úpravu kontaktov
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update_contact'])) {
         $id = $_POST['contact_id'];
@@ -60,7 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='text-danger text-center'>Nepodarilo sa upraviť kontakt.</p>";
         }
     }
+}
 
+// Spracovanie formulárov na pridávanie a úpravu používateľov
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update_user'])) {
         $id = $_POST['user_id'];
         $name = $_POST['user_name'];
@@ -74,7 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='text-danger text-center'>Nepodarilo sa upraviť používateľa.</p>";
         }
     }
+}
 
+// Spracovanie formulárov na pridávanie a úpravu produktov
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['create_product'])) {
         $name = $_POST['product_name'];
         $description = $_POST['product_description'];
@@ -84,10 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($productManager->createProduct($name, $description, $price, $image)) {
             header('Location: admin.php?message=Produkt bol úspešne pridaný');
             exit;
+        } else {
+            echo "<p class='text-danger text-center'>Nepodarilo sa pridať produkt.</p>";
         }
-    }
-
-    if (isset($_POST['update_product'])) {
+    } elseif (isset($_POST['update_product'])) {
         $id = $_POST['product_id'];
         $name = $_POST['product_name'];
         $description = $_POST['product_description'];
@@ -97,7 +104,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($productManager->updateProduct($id, $name, $description, $price, $image)) {
             header('Location: admin.php?message=Produkt bol úspešne upravený');
             exit;
+        } else {
+            echo "<p class='text-danger text-center'>Nepodarilo sa upraviť produkt.</p>";
         }
+    }
+}
+
+// Spracovanie akcií z GET parametrov pre kontakty
+if (isset($_GET['action']) && isset($_GET['id']) && $_GET['action'] === 'delete_contact') {
+    $id = intval($_GET['id']);
+    if ($contactManager->deleteContact($id)) {
+        header('Location: admin.php?message=Kontakt bol úspešne vymazaný');
+        exit;
+    } else {
+        echo "<p class='text-danger text-center'>Nepodarilo sa vymazať kontakt.</p>";
+    }
+}
+
+// Spracovanie akcií z GET parametrov pre používateľov
+if (isset($_GET['action']) && isset($_GET['id']) && $_GET['action'] === 'delete_user') {
+    $id = intval($_GET['id']);
+    if ($userManager->deleteUser($id)) {
+        header('Location: admin.php?message=Používateľ bol úspešne vymazaný');
+        exit;
+    } else {
+        echo "<p class='text-danger text-center'>Nepodarilo sa vymazať používateľa.</p>";
+    }
+}
+
+// Spracovanie akcií z GET parametrov pre produkty
+if (isset($_GET['action']) && isset($_GET['id']) && $_GET['action'] === 'delete_product') {
+    $id = intval($_GET['id']);
+    if ($productManager->deleteProduct($id)) {
+        header('Location: admin.php?message=Produkt bol úspešne vymazaný');
+        exit;
+    } else {
+        echo "<p class='text-danger text-center'>Nepodarilo sa vymazať produkt.</p>";
     }
 }
 ?>
@@ -211,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="card-text"><strong>Správa:</strong> <?php echo nl2br(htmlspecialchars($contact['message'])); ?></p>
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="admin.php?edit_contact_id=<?php echo $contact['id']; ?>" class="btn btn-primary btn-sm">Upraviť</a>
-                                <a href="process.php?action=delete_contact&id=<?php echo $contact['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete túto správu vymazať?')">Vymazať</a>
+                                <a href="admin.php?action=delete_contact&id=<?php echo $contact['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete túto správu vymazať?')">Vymazať</a>
                             </div>
                         </div>
                     </div>
@@ -236,7 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="card-text"><strong>Vytvorený:</strong> <?php echo htmlspecialchars($user['created_at']); ?></p>
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="admin.php?edit_user_id=<?php echo $user['id']; ?>" class="btn btn-primary btn-sm">Upraviť</a>
-                                <a href="process.php?action=delete_user&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tohto používateľa?')">Vymazať</a>
+                                <a href="admin.php?action=delete_user&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tohto používateľa?')">Vymazať</a>
                             </div>
                         </div>
                     </div>
@@ -260,7 +302,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="card-text"><strong>Cena:</strong> <?php echo htmlspecialchars($product['price']); ?> €</p>
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="admin.php?edit_product_id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm">Upraviť</a>
-                                <a href="process.php?action=delete_product&id=<?php echo $product['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tento produkt?')">Vymazať</a>
+                                <a href="admin.php?action=delete_product&id=<?php echo $product['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Naozaj chcete vymazať tento produkt?')">Vymazať</a>
                             </div>
                         </div>
                     </div>

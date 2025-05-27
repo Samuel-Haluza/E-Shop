@@ -11,7 +11,8 @@ require(__DIR__ . '/../funk/Menu.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
-    add_styles();
+    $assetsManager = new AssetsManager();
+    $assetsManager->addStyles();
     ?>
 </head>
 
