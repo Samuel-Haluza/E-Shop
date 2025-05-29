@@ -1,9 +1,19 @@
 <?php
-
 session_start();
-include('db.php');
-include("partials/header.php");
-include("funk/User.php");
+
+// Ak je používateľ už prihlásený, presmeruj ho podľa role
+if (isset($_SESSION['user_id'])) {
+    if ($_SESSION['user_role'] == 0) {
+        header('Location: admin.php');
+    } else {
+        header('Location: index.php');
+    }
+    exit;
+}
+
+require('db.php');
+require("partials/header.php");
+require("funk/User.php");
 require_once("funk/function.php"); 
 
 // Vytvorenie pripojenia k databáze
@@ -11,6 +21,14 @@ $database = new Database();
 $db = $database->getConnection();
 $userModel = new User($db);
 $assetsManager = new AssetsManager(); 
+
+$error = '';
+$message = '';
+
+// Kontrola správy z registrácie
+if (isset($_GET['message'])) {
+    $message = '<div class="alert alert-success text-center">' . htmlspecialchars($_GET['message']) . '</div>';
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -38,19 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <?php $assetsManager->addStyles(); ?>
-</head>
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
             <h2 class="text-center mb-4">Prihlásenie</h2>
-            <?php if (isset($error)): ?>
+            <?php 
+            if ($message) echo $message;
+            if ($error): ?>
                 <div class="alert alert-danger text-center"><?php echo $error; ?></div>
             <?php endif; ?>
             <form method="POST">
@@ -67,8 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
-</html>
 <?php
 include("partials/footer.php");
-
 ?>

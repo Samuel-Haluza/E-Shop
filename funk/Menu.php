@@ -10,8 +10,6 @@ class Menu {
                 ['label' => 'About', 'link' => 'about.php'],
                 ['label' => 'Shop', 'link' => 'shop.php'],
                 ['label' => 'Contact', 'link' => 'contact.php'],
-                ['label' => 'Login', 'link' => 'login.php'],
-                ['label' => 'Register', 'link' => 'register.php'],
             ];
         }
         $this->menuItems = $menuItems;

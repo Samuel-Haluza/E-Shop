@@ -5,10 +5,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 0) {
     exit;
 }
 
-include('db.php');
-include('funk/User.php');
-include('funk/Contact.php');
-include('funk/Product.php');
+require('db.php');
+require('funk/User.php');
+require('funk/Contact.php');
+require('funk/Product.php');
 
 
 $database = new Database();
@@ -149,7 +149,6 @@ if (isset($_GET['action']) && isset($_GET['id']) && $_GET['action'] === 'delete_
 <!-- Nadpis -->
 <section class="admin-header text-center py-4 bg-light">
     <h1>Vitaj Admin</h1>
-    <a href="logout.php" class="btn btn-danger mt-3">Odhlásiť sa</a>
 </section>
 
 <!-- Formulár na úpravu kontaktu -->

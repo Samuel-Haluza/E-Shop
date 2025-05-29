@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require(__DIR__ . '/../funk/function.php'); 
 require(__DIR__ . '/../funk/Menu.php');
 ?>
@@ -12,8 +15,21 @@ require(__DIR__ . '/../funk/Menu.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
     $assetsManager = new AssetsManager();
-    $assetsManager->addStyles();
+    $assetsManager->defineStyles();
+    foreach ($assetsManager->getStyles() as $style) {
+        echo '<link rel="stylesheet" href="' . $style . '">';
+    }
     ?>
+    <style>
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .auth-buttons a {
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,8 +57,17 @@ require(__DIR__ . '/../funk/Menu.php');
                         ?>
                     </ul>
                 </div>
+                <div class="auth-buttons">
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <?php if ($_SESSION['user_role'] == 0): ?>
+                            <a href="admin.php" class="nav-link">Admin</a>
+                        <?php endif; ?>
+                        <a href="logout.php" class="nav-link">Logout</a>
+                    <?php else: ?>
+                        <a href="login.php" class="nav-link">Login</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>
-</body>
-</html>

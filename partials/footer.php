@@ -1,3 +1,4 @@
+
 <!-- Start Footer -->
  <?php
  require_once(__DIR__ . '/../funk/function.php');
@@ -119,7 +120,10 @@
     </div>
     <?php
     $assetsManager = new AssetsManager();
-    $assetsManager->addScripts();
+    $assetsManager->defineScripts();
+    foreach ($assetsManager->getScripts() as $script) {
+        echo '<script src="' . $script . '"></script>';
+    }
     ?>
 </footer>
 <!-- End Footer -->
