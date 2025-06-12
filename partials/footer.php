@@ -1,7 +1,8 @@
-
 <!-- Start Footer -->
  <?php
  require_once(__DIR__ . '/../funk/function.php');
+ require_once(__DIR__ . '/../funk/SocialLinks.php');
+ require_once(__DIR__ . '/../funk/ProductLinks.php');
 ?>
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
@@ -29,22 +30,8 @@
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <?php
-                    
-                    $products = [
-                        ['label' => 'Luxury', 'link' => '#'],
-                        ['label' => 'Sport Wear', 'link' => '#'],
-                        ['label' => "Men's Shoes", 'link' => '#'],
-                        ['label' => "Women's Shoes", 'link' => '#'],
-                        ['label' => 'Popular Dress', 'link' => '#'],
-                        ['label' => 'Gym Accessories', 'link' => '#'],
-                        ['label' => 'Sport Shoes', 'link' => '#']
-                    ];
-
-                    // Vytvorenie objektu triedy Menu pre produkty
-                    $menu = new Menu($products);
-                    
-                    // Výpis produktov cez triedu Menu
-                    foreach ($menu->index() as $item) {
+                    $productLinks = new ProductLinks();
+                    foreach ($productLinks->getProducts() as $item) {
                         echo '<li><a class="text-decoration-none" href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
                     }
                     ?>
@@ -77,16 +64,8 @@
             <div class="col-auto me-auto">
                 <ul class="list-inline text-left footer-icons">
                     <?php
-                  
-                    $socialLinks = [
-                        'facebook-f' => 'http://fb.com/templatemo',
-                        'instagram' => 'https://www.instagram.com/',
-                        'twitter' => 'https://twitter.com/',
-                        'linkedin' => 'https://www.linkedin.com/'
-                    ];
-
-
-                    foreach ($socialLinks as $icon => $link) {
+                    $socialLinks = new SocialLinks();
+                    foreach ($socialLinks->getLinks() as $icon => $link) {
                         echo '<li class="list-inline-item">
                                 <a class="text-light" href="' . $link . '" target="_blank">
                                     <i class="fab fa-' . $icon . ' fa-fw"></i>
